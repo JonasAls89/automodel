@@ -158,10 +158,9 @@ def global_list():
             tmp_pipes_in_globals.extend(pipes_in_global)
             if global_groups[element_count].get('id') == group_count:
                 global_groups[element_count]['name'] = pipe
-                idx = 1
                 for tmp_pipe in tmp_pipes_in_globals:
-                    global_groups[element_count]['items'].append({"id": idx, "name": tmp_pipe, "groupId": group_count})
-                    idx = idx + 1
+                    global_groups[element_count]['items'].append({"id": index_value, "name": tmp_pipe, "groupId": group_count})
+                    index_value = index_value + 1
                 element_count = element_count + 1
                 group_count = group_count + 1
 
@@ -171,12 +170,13 @@ def global_list():
             else:
                 return_object.append({"id": index_value, "name": pipe, "groupId": 1})
                 index_value = index_value + 1
+        
+        tmp_pipes_in_globals = []
 
     global_groups[0]['items'].extend(return_object)
     response_object = global_groups
     
     tmp_globals = []
-    tmp_pipes_in_globals = []
 
     sesam_response = {"result": response_object}
     return {"pipes": pipes_to_use_for_globals}
@@ -196,7 +196,7 @@ def get_globals():
     for element in global_selection['globalGroups']:
         for key, value in element.items():
             if key == "name":
-                if value == "Default List" or value == "First Global" or value == "Second Global" or value == "Third Global" or value == "Fourth Global":
+                if value == "Default List" or value == "First Global" or value == "Second Global" or value == "Third Global" or value == "Fourth Global" or value == "Fifth Global":
                     pass
                 else:
                     selected_globals.append(element)
@@ -388,7 +388,7 @@ def create_dataflow_globals():
     for element in connectors['globalGroups']:
         for key, value in element.items():
             if key == "name":
-                if value == "Default List" or value == "First Global" or value == "Second Global" or value == "Third Global" or value == "Fourth Global":
+                if value == "Default List" or value == "First Global" or value == "Second Global" or value == "Third Global" or value == "Fourth Global" or value == "Fifth Global":
                     pass
                 else:
                     selected_globals.append(element)
