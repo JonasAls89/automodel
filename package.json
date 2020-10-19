@@ -1,0 +1,17 @@
+{
+  "name": "automodel",
+  "private": false,
+  "version": "0.0.1",
+  "description": "A repo for connecting to databases and then dimensionally modelling tables based on content and/or names in a modelling system afterwards..",
+  "author": "Jonas Als Christensen",
+  "license": "MIT",
+  "scripts": {
+    "stop": "lsof -t -i tcp:5000 | xargs kill -9",
+    "deploy": "",
+    "install": "sudo pip3 install -r requirements.txt",
+    "swagger": "python3 backend/service.py"
+  },
+  "dependencies": {
+    "vue-loading-checkbox": "^0.2.0"
+  }
+}
