@@ -310,7 +310,20 @@ def create_global(global_name, selected_pipes, sesam_jwt, sesam_base_url):
                                    data=json.dumps([global_pipe]),
                                    verify=False)
     if not sesam_response.ok:
-        print(sesam_response.content)
+        response = json.loads(sesam_response.content.decode('utf-8-sig'))
+        if response['detail'] == f"The pipe '{global_name}' already exists!":
+            print(f'Trying to update config of {global_name}...')
+            sesam_second_response = requests.put(f"{sesam_base_url}/pipes/{global_name}/config",
+                                   headers=header,
+                                   data=json.dumps(global_pipe),
+                                   verify=False)
+            if not sesam_second_response.ok:
+                print(sesam_second_response.content)
+            
+            else:
+                print(f"Pipe '{global_pipe['_id']}' has been updated")
+                return_msg = "Global updated"
+    
     else:
         print(f"Pipe '{global_pipe['_id']}' has been created")
         return_msg = "Global created"
