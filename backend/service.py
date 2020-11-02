@@ -196,7 +196,7 @@ def get_globals():
     for element in global_selection['globalGroups']:
         for key, value in element.items():
             if key == "name":
-                if value == "Default List" or value == "First Global" or value == "Second Global" or value == "Third Global" or value == "Fourth Global" or value == "Fifth Global":
+                if "global-" not in value:
                     pass
                 else:
                     selected_globals.append(element)
@@ -388,7 +388,7 @@ def create_dataflow_globals():
     for element in connectors['globalGroups']:
         for key, value in element.items():
             if key == "name":
-                if value == "Default List" or value == "First Global" or value == "Second Global" or value == "Third Global" or value == "Fourth Global" or value == "Fifth Global":
+                if "global-" not in value:
                     pass
                 else:
                     selected_globals.append(element)
