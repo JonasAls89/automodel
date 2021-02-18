@@ -63,25 +63,17 @@ def create_pipe_with_fkey_ni(connection_params, list_with_table_relations,
     for table in list_with_table_relations:
         if table[0] in tmp_dict:
             tmp_dict[table[0]].append([
-                "add",
-                f"{table[2].replace('_', '-')}-{table[3]}-ni",
-                [
-                    "ni",
+                "make-ni",
                     f"{connection_params['dbase'].replace('_', '-')}-{table[2].replace('_', '-')}",
                     f"_S.{table[1]}"
-                ]
             ])
         else:
             tmp_dict = {
                 table[0]: [[
-                    "add",
-                    f"{table[2].replace('_', '-')}-{table[3]}-ni",
-                    [
-                        "ni",
-                        f"{connection_params['dbase'].replace('_', '-')}-{table[2].replace('_', '-')}",
-                        f"_S.{table[1]}"
-                    ]
-                ]]
+                "make-ni",
+                    f"{connection_params['dbase'].replace('_', '-')}-{table[2].replace('_', '-')}",
+                    f"_S.{table[1]}"
+            ]]
             }
 
         pipe = {
@@ -146,24 +138,16 @@ def create_pipe_with_idx_ni(connection_params, list_with_table_relations,
         
         if pipe_id in tmp_dict:
             tmp_dict[pipe_id].append([
-                "add",
-                f"{pipe_idx_table.replace('_', '-')}-{pipe_idx_column}-ni",
-                [
-                    "ni",
+                    "make-ni",
                     f"{connection_params['dbase']}-{pipe_idx_table.replace('_', '-')}",
                     f"_S.{pipe_id_column}"
-                ]
             ])
         else:
             tmp_dict = {
                 pipe_id : [[
-                    "add",
-                    f"{pipe_idx_table.replace('_', '-')}-{pipe_idx_column}-ni",
-                    [
-                        "ni",
-                        f"{connection_params['dbase'].replace('_', '-')}-{pipe_idx_table.replace('_', '-')}",
-                        f"_S.{pipe_id_column}"
-                    ]
+                    "make-ni",
+                    f"{connection_params['dbase']}-{pipe_idx_table.replace('_', '-')}",
+                    f"_S.{pipe_id_column}"
                 ]]
             }
 

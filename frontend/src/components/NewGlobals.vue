@@ -142,6 +142,13 @@ export default {
     onGroupsChange(e) {
       //eslint-disable-next-line no-console
       console.log({ e });
+      //eslint-disable-next-line no-console
+      console.log(this.groups[2].name);
+      if (this.groups[2].items.length == 1) {
+        //eslint-disable-next-line no-console
+        console.log(this.groups[2].items[0].name);
+      }
+    
     },
     onGlobalNameChange(e) {
       //eslint-disable-next-line no-console
